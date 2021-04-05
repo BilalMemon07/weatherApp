@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="box">
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+
+        <div id="wethercon">
+            <i class="fas fa-sun" style="color: #eccc68;"></i>
+        </div>
+        <div class="info">
+            <h2 class="location"> <i class="fas fa-street-view"></i>{%City%},{%Country%}</h2>
+            <p id="date">wed | 20 | 10:30 </p>
+            <h1 class="temp">{%tempval%}</h1>
+            <h3>{%tempmin%}| {%tempmax%}</h3>
+            <h3>{%tempStatus%}</h3>
+        </div>
+    </div>
+
+    <script>
+        const curData = document.getElementById("date");
+        let wethercon = document.getElementById('wethercon');
+
+        if (temstatus == Sunny) {
+            wethercon.innerHTML = " <i class='fas fa-sun' style='color: #eccc68;'></i>"
+        } else if (temstatus == Cloudy) {
+            wethercon.innerHTML = "<i class='fas fa-clouds'></i>"
+        }else{
+            wethercon.innerHTML = "<i class='fas fa-clouds'></i>"
+        }
+
+
+        const temstatus = 'clould';
+        const getCurrentDate = () => {
+            var d = new Date();
+            var weekday = new Array(7);
+            weekday[0] = "Sun";
+            weekday[1] = "Mon";
+            weekday[2] = "Tues";
+            weekday[3] = "Wed";
+            weekday[4] = "Thur";
+            weekday[5] = "Fri";
+            weekday[6] = "Sat";
+
+            let day = weekday[d.getDay()]
+            return day
+
+
+
+        }
+
+        const getCurrentTime = () => {
+            var now = new Date();
+            var months = [
+                'jan',
+                'feb',
+                'mar',
+                'apr',
+                'may',
+                'jun',
+                'jul',
+                'aug',
+                'sep',
+                'otc',
+                'nov',
+                'dec',
+            ]
+
+            var month = months[now.getMonth() + 1];
+            var day = now.getDay();
+            var year = now.getFullYear();
+
+
+
+
+            var hours = now.getHours();
+            var min = now.getMinutes();
+
+
+            let periods = 'AM';
+            if (hours > 11) {
+                periods = 'PM'
+            }
+            if (hours > 12) hours -= 12
+
+            if (min < 10) {
+                min = '0' + min
+            }
+            return `${month} - ${day} - ${year}  |   ${hours}:${min}:${periods}`
+        }
+
+        curData.innerHTML = getCurrentDate() + '  |  ' + getCurrentTime();
+
+    </script>
+
+</body>
+
+</html>
